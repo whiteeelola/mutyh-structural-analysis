@@ -28,7 +28,8 @@ size_x, size_y, size_z = 25, 25, 25
 
 # 3. Find receptors
 all_files = os.listdir(DATA_DIR)
-proteins = [f for f in all_files if f.endswith("_receptor.pdbqt")]
+proteins = [f for f in all_files if f.endswith("_receptor.pdbqt") and "R19X" not in f]
+
 
 print(f"Found {len(proteins)} prepared receptor files.")
 
