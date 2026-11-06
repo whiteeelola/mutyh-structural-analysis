@@ -72,6 +72,24 @@ This docking was used to assess the distortion of the DNA-recognition interface.
 **Key Observation:**
 At the DNA-binding interface, **Q388X** shows a catastrophic loss of affinity (ΔΔG = +4.98 kcal/mol), consistent with the deletion of the C-terminal domain. **Y179C** shows a moderate decrease (+1.61 kcal/mol), while **G396D** shows a smaller decrease (+0.61 kcal/mol). This suggests that while G396D affects the catalytic site, it may not disrupt the DNA-binding interface as severely as Q388X or Y179C.
 
+### Visual Comparison of Binding Affinities
+The bar chart below compares the binding affinities of 8-oxoguanine in the DNA-binding interface (blue) versus the catalytic pocket (orange). 
+
+![Pocket Comparison](results/pocket_comparison.png)
+*Figure: Comparison of binding affinities across the two docking sites. Note the dramatic drop for Q388X at the DNA-binding interface (-1.25 kcal/mol) compared to its retention in the catalytic pocket (-4.57 kcal/mol).*
+
+**Key Observation:**
+The **Q388X** mutation causes a catastrophic loss of affinity at the DNA-binding interface (-1.25 kcal/mol) but retains moderate binding in the catalytic pocket (-4.57 kcal/mol). This confirms that the C-terminal truncation specifically disrupts the DNA-recognition surface, while leaving the catalytic site partially intact.
+
+### ΔΔG Analysis: Impact of Mutations on Binding
+The bar chart below shows the change in binding energy (ΔΔG) relative to the wild-type for each mutation. Higher ΔΔG indicates a greater loss of binding affinity.
+
+![Delta Delta G](results/delta_delta_g.png)
+*Figure: ΔΔG values for each mutation in the DNA-binding interface (blue) and the catalytic pocket (orange).*
+
+**Key Observation:**
+The **Q388X** mutation causes the largest destabilization at the DNA-binding interface (ΔΔG = +4.98 kcal/mol), while its effect on the catalytic pocket is much milder (ΔΔG = +1.57 kcal/mol). This confirms that the C-terminal truncation specifically disrupts the DNA-recognition surface without completely destroying the catalytic site. In contrast, **G396D** shows comparable effects on both pockets (ΔΔG = +0.61 and +0.84 kcal/mol).
+
 ### 3. Machine Learning Analysis (ESM-2)
 We used the **ESM-2 protein language model** to assess the evolutionary fitness of each variant. The Log-Likelihood Ratio (LLR) was computed at the relevant positions.
 
