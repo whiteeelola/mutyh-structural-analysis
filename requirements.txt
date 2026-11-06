@@ -7,3 +7,4 @@ matplotlib
 gemmi
 transformers
 torch
+pandas

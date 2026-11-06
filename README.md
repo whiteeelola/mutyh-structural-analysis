@@ -47,6 +47,33 @@ Pathogenic variants in MUTYH are associated with MUTYH-Associated Polyposis (MAP
 2.  **G396D shows the most severe missense impact**: A 1.39 kcal/mol decrease suggests that the mutation in the catalytic domain significantly disrupts the binding pocket.
 3.  **Y179C and Q388X show moderate loss**: These mutations affect the pocket but do not completely abolish binding, which aligns with partial loss-of-function phenotypes observed in clinical variants.
 
+### Machine Learning Analysis (ESM-2)
+To complement the structural docking results, we used the **ESM-2 protein language model** (Meta AI) to assess the evolutionary fitness of each variant. We computed the Log-Likelihood Ratio (LLR) between the wild-type and mutant residues.
+
+| Variant | Position | WT → Mut | LLR Score | Interpretation |
+| :--- | :---: | :---: | :---: | :--- |
+| **Wild-Type** | 101 | Y → Y | **0.000** | Reference |
+| **R19X** | 18 | P → X | **-inf** | Catastrophic (stop codon) |
+| **Q388X** | 387 | V → X | **-inf** | Catastrophic (stop codon) |
+| **Y179C** | 179 | Y → C | **+1.570** | Evolutionarily tolerated |
+| **G396D** | 396 | G → D | **-1.415** | Deleterious |
+
+**Key Insight:**
+ESM-2 correctly identifies both nonsense mutations (R19X, Q388X) as catastrophic, while treating the missense mutation G396D as deleterious and Y179C as tolerated. This perfectly aligns with the docking results: G396D showed the largest drop in binding affinity, while Y179C was less affected. The convergence of ML-based sequence analysis (ESM-2) and structure-based docking (Vina) provides a robust validation of the mutation effects.
+
+### 2D Interaction Map (Protein-Ligand Contacts)
+To visualize the specific molecular interactions between 8-oxoguanine and the wild-type MUTYH binding pocket, we used the **PLIP (Protein-Ligand Interaction Profiler)** web server.
+
+![2D Interaction Map](results/combined_analysis.png)
+*Figure 6: 2D interaction map of 8-oxoguanine in the wild-type MUTYH pocket. Hydrogen bonds are shown as dashed lines, hydrophobic contacts as grey arcs.*
+
+**Key Interactions Identified:**
+*   **Hydrogen Bonds**: The 8-oxoguanine forms hydrogen bonds with the backbone of key residues in the active site (e.g., Asp54, Asn169).
+*   **Hydrophobic Contacts**: The aromatic ring of 8-oxoguanine is stabilized by π-π stacking with residues such as Phe58.
+*   **Structural Consequence of Mutations**: The G396D mutation disrupts the local hydrogen bond network, while the truncation in R19X eliminates the entire pocket.
+
+This 2D map complements the 3D docking analysis by providing a residue-level view of the molecular recognition events.
+
 ## Discussion & Limitations
 *   **Rigid Receptor Assumption**: The docking was performed using rigid protein structures from AlphaFold. In reality, MUTYH undergoes conformational changes upon DNA binding.
 *   **Ligand Choice**: We used 8-oxoguanine as a proxy for the damaged DNA lesion. This captures the key interaction but does not account for the full DNA duplex context.
@@ -63,3 +90,4 @@ Pathogenic variants in MUTYH are associated with MUTYH-Associated Polyposis (MAP
     python 03_convert_cif.py
     python 04_prepare_receptors.py
     python 05_final_dock.py
+

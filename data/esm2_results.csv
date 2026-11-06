@@ -1,0 +1,6 @@
+Variant,WT_Amino_Acid,Mutant_Amino_Acid,Position,LLR_Score
+Wild-Type,Y,Y,101,0.0
+R19X,P,X,18,-inf
+Q388X,V,X,387,-inf
+Y179C,Y,C,179,1.5707883834838867
+G396D,G,D,396,-1.4158086776733398
