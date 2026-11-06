@@ -1,0 +1,9 @@
+biopython
+rdkit
+meeko
+numpy
+scipy
+matplotlib
+gemmi
+transformers
+torch

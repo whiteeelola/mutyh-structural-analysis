@@ -1,0 +1,21 @@
+import os
+import gemmi
+
+DATA_DIR = "data"
+variants = ["wild_type", "R19X", "Q388X", "Y179C", "G396D"]
+
+for name in variants:
+    cif_file = os.path.join(DATA_DIR, f"{name}.cif")
+    pdb_file = os.path.join(DATA_DIR, f"{name}.pdb")
+    
+    if not os.path.exists(cif_file):
+        print(f"Warning: {cif_file} not found. Skipping.")
+        continue
+    
+    print(f"Converting {name}.cif to {name}.pdb...")
+    st = gemmi.read_structure(cif_file)
+    st.setup_entities()
+    st.write_pdb(pdb_file)
+    print(f"Saved {pdb_file}")
+
+print("All CIF files converted to PDB!")

@@ -1,0 +1,15 @@
+.venv/
+venv/
+
+vina.exe
+*.exe
+
+__pycache__/
+*.pyc
+
+data/*.cif
+
+results/*.pdbqt
+
+.DS_Store
+Thumbs.db
