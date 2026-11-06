@@ -142,33 +142,39 @@ python 10_dock_prankweb.py
 ```bash
 conda install -c conda-forge pymol-open-source
 ```
-Launch PyMOL:
-
-On Windows: Open the "PyMOL" application from your Start Menu (or run pymol in Anaconda Prompt).
-
-On macOS/Linux: Open a terminal and type pymol.
-
 Prepare the file for PyMOL:
-PyMOL cannot read .pdbqt files directly. Before loading, rename the docking output file:
+PyMOL can read .pdbqt files, but changing the extension ensures correct atom type parsing. Rename the output docking file before loading:
 
+On Windows (Command Prompt):
+```bash
+copy results\wild_type_final_docked.pdbqt results\wild_type_final_docked.pdb
 ```
-# Example for wild-type:
-copy results/wild_type_final_docked.pdbqt results/wild_type_final_docked.pdb
+On macOS/Linux:
+```bash
+cp results/wild_type_final_docked.pdbqt results/wild_type_final_docked.pdb
 ```
-(Or simply change the file extension in your file explorer from .pdbqt to .pdb).
 
-Run the following commands in the PyMOL command line:
-```load results/wild_type_final_docked.pdbqt, complex
+Run the following commands sequentially in the PyMOL command line:
+```pymol
+# 1. Load the renamed structure file
+load results/wild_type_final_docked.pdb, complex
+
+# 2. Format the receptor surface visualization
 hide everything, complex
 show surface, complex
-set transparency, 0.6, complex
+set transparency, 0.4, complex
 color grey80, complex
-show sticks, resn 8OG
-color red, resn 8OG
-set stick_radius, 0.25, resn 8OG
-zoom resn 8OG, 10
+
+# 3. Target and format the ligand (Meeko default residue name is UNK)
+select ligand, resn UNK
+show sticks, ligand
+color red, ligand
+set stick_radius, 0.3, ligand
+
+# 4. Focus the camera on the active site pocket
+zoom ligand, 8
 ```
 
-Then export the image: File → Export Image as → PNG and save it as results/wild_type_3d.png.
+Then export the image: **File → Export Image as → PNG** and save it to the `results/` directory as `wild_type_3d.png`. 
 
-Repeat for the other variants by replacing wild_type with Y179C, G396D, Q388X, or R19X.
+Repeat this procedure for the remaining variants (`Y179C`, `G396D`, `Q388X`, `R19X`) by replacing `wild_type` with the respective variant filename.
